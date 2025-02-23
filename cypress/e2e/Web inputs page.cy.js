@@ -10,9 +10,9 @@ describe('first test', () => {
     cy.get("#input-password").type("2020")
     cy.get('[name="input-date"]').type("1993-09-29")
     cy.wait(3000)
-    cy.contains("Display Inputs").click()
+    cy.contains("button", "Display Inputs").click()
     cy.wait(2000)
-    cy.contains("Clear Inputs").click()
+    cy.contains("button","Clear Inputs").click()
 
   })
 })
