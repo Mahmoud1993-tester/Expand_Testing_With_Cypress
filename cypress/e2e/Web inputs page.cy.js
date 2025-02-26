@@ -1,18 +1,16 @@
 /// <reference types="cypress" />
-
+beforeEach(()=> {
+  cy.visit('/inputs')
+})
 
 describe('first test', () => {
   it('web inputs page', () => {
-    cy.visit('/inputs')
-    cy.wait(3000)
-    cy.get("#input-number").type("1")
-    cy.get("#input-text").type("Mahmoud2020")
-    cy.get("#input-password").type("2020")
+    cy.get('[name="input-number"]').type("1")
+    cy.get('[name="input-text"]').type("Mahmoud2020")
+    cy.get('[name="input-password"]').type("2020")
     cy.get('[name="input-date"]').type("1993-09-29")
-    cy.wait(3000)
-    cy.contains("button", "Display Inputs").click()
-    cy.wait(2000)
-    cy.contains("button","Clear Inputs").click()
+    cy.contains("button", "Display Inputs").should("be.visible").wait(3000).click()
+    cy.contains("button","Clear Inputs").should("be.visible").click()
 
   })
 })

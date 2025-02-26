@@ -1,10 +1,10 @@
 /// <reference types="cypress"/>
-
+beforeEach(()=> {
+    cy.visit("/dynamic-table");
+})
 
 describe('Dynamic Table Test', () => {
     it('Compares Chrome CPU value with the yellow label', () => {
-        cy.visit("/dynamic-table");
-
         // Find the index of the "CPU" column dynamically
         cy.get('table th').each((th, index) => {
             if (th.text().trim() === 'CPU') {
@@ -14,6 +14,7 @@ describe('Dynamic Table Test', () => {
 
         // Use the dynamically found CPU index to get the Chrome CPU value
         cy.get('@cpuIndex').then((cpuIndex) => {
+            cy.contains("p", "Chrome CPU:").should("be.visible")
             cy.get('td').contains('Chrome').parent().find('td').eq(cpuIndex).invoke('text').then((cpuload) => {
                 cy.get("#chrome-cpu").invoke('text').then((labelvalue) => {
                     // Remove non-numeric characters (e.g., %, spaces)
