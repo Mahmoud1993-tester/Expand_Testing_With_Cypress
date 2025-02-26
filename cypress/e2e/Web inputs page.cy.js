@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+
 beforeEach(()=> {
   cy.visit('/inputs')
 })
@@ -11,6 +11,7 @@ describe('first test', () => {
     cy.get('[name="input-date"]').type("1993-09-29")
     cy.contains("button", "Display Inputs").should("be.visible").wait(3000).click()
     cy.contains("button","Clear Inputs").should("be.visible").click()
+    
 
   })
 })
